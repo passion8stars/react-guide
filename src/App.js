@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
 
-function App() {
-  return (
-    <div className="App">
-     <h1>Welcome, I am React App.Enjoy</h1>
-     <p>It sems its working fine</p>
-     <p>really, I confirm.</p>
-     <Person name="Parvind" age="31"/>
-     <Person name="Arvind" age="31"/>
-     <Person name="Manish" age="35"/>
-    </div>
-  );
+class App extends Component {
+  state = {
+    persons: [
+      { name: 'Parvind', age: '31' },
+      { name: 'Arvind', age: '33' },
+      { name: 'Manish', age: '35' }
+    ]
+  }
+  render() {
+    return (
+      <div className="App">
+        <h1>Welcome, I am React App.Enjoy</h1>
+        <p>It sems its working fine</p>
+        <p>really, I confirm.</p>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+      </div>
+    );
+  }
 }
 
 export default App;
