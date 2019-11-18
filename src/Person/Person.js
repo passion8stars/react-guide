@@ -1,12 +1,19 @@
-import React from 'react';
-const person =(props)=>{
+import React, { useState } from 'react';
+const Person = (props) => {
+    const [count, setCount] = useState(0);
+    const [likeCount, setLikeCount] = useState('Good');
+    const handleLikeCount = () => {
+        setLikeCount('Bad')
+    }
     return (
         <div className="person">
-        <h1>{props.name}</h1>
-        <p>My Age : {props.age}</p>
-        {props.children}
+            <h1>{props.name}</h1>
+            <p>My Age : {props.age}</p>
+            {props.children}
+            <button onClick={() => setCount(count + 1)}>Click ({count})</button>
+            <button onClick={handleLikeCount}>Likes ({likeCount})</button>
         </div>
     );
 };
 
-export default person;
+export default Person;
