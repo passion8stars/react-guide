@@ -10,12 +10,16 @@ class App extends Component {
       { name: 'Manish', age: '35' }
     ]
   }
+  btnClickHandler=()=>{
+    console.log('Button Clicked');
+  }
   render() {
     return (
       <div className="App">
         <h1>Welcome, I am React App.Enjoy</h1>
         <p>It sems its working fine</p>
         <p>really, I confirm.</p>
+        <button onClick={this.btnClickHandler}>Click Me</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
