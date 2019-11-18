@@ -10,7 +10,7 @@ class App extends Component {
       { name: 'Manish', age: '35' }
     ]
   }
-  btnClickHandler=()=>{
+  btnClickHandler = () => {
     console.log('Button Clicked');
   }
   render() {
