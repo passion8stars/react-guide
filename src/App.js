@@ -11,7 +11,14 @@ class App extends Component {
     ]
   }
   btnClickHandler = () => {
-    console.log('Button Clicked');
+    //console.log('Button Clicked');
+    this.setState({
+      persons: [
+        { name: 'Parvind Kumar', age: '31' },
+        { name: 'Arvind Kumar', age: '33' },
+        { name: 'Manish Parashar', age: '35' }
+      ]
+    })
   }
   render() {
     return (
