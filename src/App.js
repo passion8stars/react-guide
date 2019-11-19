@@ -43,7 +43,14 @@ class App extends Component {
       togtext: doesShow ? 'Show' : 'Hide'
     });
   }
+  deleteHandler=(personindex)=>{
+    const persons = this.state.persons;
+    persons.splice(personindex,1);
+    this.setState({
+      persons:persons})
+    console.log(personindex);
 
+  }
   render() {
     const btnStyle = {
       backgroundColor: 'white',
@@ -53,15 +60,12 @@ class App extends Component {
     if (this.state.showPerson) {
       persons =
         < div >
-          {this.state.persons.map(person => {
-            return <Person name={person.name} 
-            age={person.age} 
-            changed={this.updateNameHandler} 
-            click={this.switchNameHandler.bind(this, 'Parvind')} />
+          {this.state.persons.map((person, index) => {
+            return <Person name={person.name}
+              age={person.age}
+              changed={this.updateNameHandler}
+              click={()=>this.deleteHandler(index)} />
           })}
-          
-         
-        
         </div >
 
     }
