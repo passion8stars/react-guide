@@ -23,6 +23,17 @@ class App extends Component {
       ]
     });
   };
+  updateNameHandler = (event) => {
+    // console.log('Was clicked!');
+    // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
+    this.setState({
+      persons: [
+        { name: event.target.value, age: 31 },
+        { name: 'Manu', age: 29 },
+        { name: 'Stephanie', age: 27 }
+      ]
+    });
+  };
 
   render() {
     return (
@@ -33,6 +44,7 @@ class App extends Component {
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
+          changed={this.updateNameHandler}
         />
         <Person
           name={this.state.persons[1].name}

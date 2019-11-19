@@ -12,6 +12,7 @@ const Person = (props) => {
             {props.children}
             <button onClick={() => setCount(count + 1)}>Click ({count})</button>
             <button onClick={handleLikeCount}>Likes ({likeCount})</button>
+            <input type="text" value={props.name} onChange={props.changed} />
         </div>
     );
 };
