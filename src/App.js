@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import { whileStatement } from '@babel/types';
 
 class App extends Component {
   state = {
@@ -36,11 +37,15 @@ class App extends Component {
   };
 
   render() {
+    const btnStyle={
+      backgroundColor:'white',
+      padding:'10px'
+    }
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={this.switchNameHandler.bind(this,'Drupaler')}>Switch Name</button>
+        <button style={btnStyle} onClick={this.switchNameHandler.bind(this,'Drupaler')}>Switch Name</button>
         <Person
           name={this.state.persons[0].name}
           age={this.state.persons[0].age}
