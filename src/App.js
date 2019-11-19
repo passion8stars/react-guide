@@ -38,18 +38,28 @@ class App extends Component {
   };
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson;
+    const persons = this.state.persons;
     this.setState({
+      //persons:persons,
+      persons: [
+        { id:'1', name: 'Parvind', age: 28 },
+        { id:'2', name: 'Manu', age: 29 },
+        { id:'3', name: 'Stephanie', age: 26 }
+      ],
       showPerson: !doesShow,
       togtext: doesShow ? 'Show' : 'Hide'
     });
   }
-  deleteHandler=(personindex)=>{
-    const persons = this.state.persons;
-    persons.splice(personindex,1);
-    this.setState({
-      persons:persons})
-    console.log(personindex);
+  deleteHandler = (personindex) => {
+    const persons = this.state.persons.slice();
+    persons.splice(personindex, 1);
+    if (persons.length === 0) {
+      this.togglePersonHandler();
+    }
 
+    this.setState({
+      persons: persons,
+    })
   }
   render() {
     const btnStyle = {
@@ -64,7 +74,8 @@ class App extends Component {
             return <Person name={person.name}
               age={person.age}
               changed={this.updateNameHandler}
-              click={()=>this.deleteHandler(index)} />
+              click={() => this.deleteHandler(index)}
+              key={person.id} />
           })}
         </div >
 
