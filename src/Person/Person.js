@@ -8,11 +8,12 @@ const Person = (props) => {
     return (
         <div className="person">
             <h1>{props.name}</h1>
-            <p onClick={props.click}>My Age : {props.age}</p>
+            <p >My Age : {props.age}</p>
             {props.children}
             <button onClick={() => setCount(count + 1)}>Click ({count})</button>
             <button onClick={handleLikeCount}>Likes ({likeCount})</button>
-            <input type="text" value={props.name} onChange={props.changed} />
+            <input type="text" value={props.name} onChange={props.changed} id={props.key}/>
+            <button onClick={props.click}>Remove</button>
         </div>
     );
 };

@@ -6,9 +6,9 @@ import { whileStatement } from '@babel/types';
 class App extends Component {
   state = {
     persons: [
-      { name: 'Parvind', age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Stephanie', age: 26 }
+      {id:'test1', name: 'Parvind', age: 28 },
+      {id:'test2', name: 'Manu', age: 29 },
+      {id:'test3', name: 'Stephanie', age: 26 }
     ],
     showPerson: false,
     togtext: 'Show'
@@ -19,33 +19,33 @@ class App extends Component {
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState({
       persons: [
-        { name: newval, age: 28 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 27 }
+        {id:'test1', name: newval, age: 28 },
+        {id:'test2', name: 'Manu', age: 29 },
+        {id:'test3', name: 'Stephanie', age: 27 }
       ]
     });
   };
-  updateNameHandler = (event) => {
-    // console.log('Was clicked!');
+  updateNameHandler = (event,id) => {
+   // console.log(id);
+   let personIndex=this.state.persons.findIndex(p=>{
+      return p.id===id;
+    })
+     //console.log(personIndex);
+     const person = {...this.state.persons[personIndex]}
+     person.name=event.target.value;
+     const persons=[...this.state.persons];
+     persons[personIndex]=person;
+     console.log(person);
     // DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
     this.setState({
-      persons: [
-        { name: event.target.value, age: 31 },
-        { name: 'Manu', age: 29 },
-        { name: 'Stephanie', age: 27 }
-      ]
+      persons: persons
     });
   };
   togglePersonHandler = () => {
     const doesShow = this.state.showPerson;
-    const persons = this.state.persons;
+    //const persons = this.state.persons;
     this.setState({
       //persons:persons,
-      persons: [
-        { id:'1', name: 'Parvind', age: 28 },
-        { id:'2', name: 'Manu', age: 29 },
-        { id:'3', name: 'Stephanie', age: 26 }
-      ],
       showPerson: !doesShow,
       togtext: doesShow ? 'Show' : 'Hide'
     });
@@ -73,7 +73,7 @@ class App extends Component {
           {this.state.persons.map((person, index) => {
             return <Person name={person.name}
               age={person.age}
-              changed={this.updateNameHandler}
+              changed={(event)=>this.updateNameHandler(event, person.id)}
               click={() => this.deleteHandler(index)}
               key={person.id} />
           })}
